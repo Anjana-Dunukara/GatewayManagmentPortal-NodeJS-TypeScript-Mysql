@@ -13,13 +13,12 @@ export class GatewayService {
     return await this.gatewayRepository.find();
   }
 
-  async getGatewayById(id: number): Promise<Gateway | undefined> {
+  async getGatewayById(id: number): Promise<Gateway | null> {
     return await this.gatewayRepository.findOne(id);
   }
 
   async createGateway(gatewayData: Partial<Gateway>): Promise<Gateway> {
-    const gateway = this.gatewayRepository.create(gatewayData);
-    return await this.gatewayRepository.save(gateway);
+    return await this.gatewayRepository.create(gatewayData);
   }
 
   async updateGateway(
@@ -27,8 +26,8 @@ export class GatewayService {
     gatewayData: Partial<Gateway>
   ): Promise<Gateway | undefined> {
     let gateway = await this.gatewayRepository.findOne(id);
-    if (gateway) {
-      gateway = this.gatewayRepository.merge(gateway, gatewayData);
+    if (gateway !== null) {
+      gateway = await this.gatewayRepository.merge(gateway, gatewayData);
       return await this.gatewayRepository.save(gateway);
     }
     return undefined;

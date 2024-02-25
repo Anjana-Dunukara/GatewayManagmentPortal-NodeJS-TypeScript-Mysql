@@ -11,35 +11,37 @@ export class GatewayRepository implements IGatewayRepository {
   ) {}
 
   async find(): Promise<Gateway[]> {
-    return this.db.getRepository<Gateway>(Gateway).find({});
+    return await this.db.getRepository<Gateway>(Gateway).find({});
   }
 
-  async findOne(id: number): Promise<Gateway | undefined> {
-    return this.db.getRepository<Gateway>(Gateway).find({
-      where: {
-        id: id,
-      },
+  async findOne(id: number): Promise<Gateway | null> {
+    return await this.db.getRepository<Gateway>(Gateway).findOneBy({
+      id,
     });
   }
 
   async create(gatewayData: Partial<Gateway>): Promise<Gateway> {
-    const newGateway = this.db.create(gatewayData);
-    return await this.gatewayRepository.save(newGateway);
+    const newGateway = this.db
+      .getRepository<Gateway>(Gateway)
+      .create(gatewayData);
+    return await this.db.getRepository<Gateway>(Gateway).save(newGateway);
   }
 
   async merge(
     gateway: Gateway,
     gatewayData: Partial<Gateway>
   ): Promise<Gateway> {
-    const mergedGateway = await this.db.merge(Gateway, gateway, gatewayData);
-    return await this.db.save(mergedGateway);
+    const mergedGateway = this.db
+      .getRepository<Gateway>(Gateway)
+      .merge(gateway, gatewayData);
+    return await this.db.getRepository<Gateway>(Gateway).save(mergedGateway);
   }
 
   async save(gateway: Gateway): Promise<Gateway> {
-    return await this.db.save(gateway);
+    return await this.db.getRepository<Gateway>(Gateway).save(gateway);
   }
 
   async delete(id: number): Promise<void> {
-    await this.db.delete(Gateway, id);
+    await this.db.getRepository<Gateway>(Gateway).delete({ id });
   }
 }

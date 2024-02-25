@@ -13,18 +13,14 @@ export class PeripheralDeviceService {
     return await this.peripheralDeviceRepository.find();
   }
 
-  async getPeripheralDeviceById(
-    id: number
-  ): Promise<PeripheralDevice | undefined> {
+  async getPeripheralDeviceById(id: number): Promise<PeripheralDevice | null> {
     return await this.peripheralDeviceRepository.findOne(id);
   }
 
   async createPeripheralDevice(
     peripheralDeviceData: Partial<PeripheralDevice>
   ): Promise<PeripheralDevice> {
-    const peripheralDevice =
-      this.peripheralDeviceRepository.create(peripheralDeviceData);
-    return await this.peripheralDeviceRepository.save(peripheralDevice);
+    return await this.peripheralDeviceRepository.create(peripheralDeviceData);
   }
 
   async updatePeripheralDevice(
@@ -33,7 +29,7 @@ export class PeripheralDeviceService {
   ): Promise<PeripheralDevice | undefined> {
     let peripheralDevice = await this.peripheralDeviceRepository.findOne(id);
     if (peripheralDevice) {
-      peripheralDevice = this.peripheralDeviceRepository.merge(
+      peripheralDevice = await this.peripheralDeviceRepository.merge(
         peripheralDevice,
         peripheralDeviceData
       );

@@ -16,10 +16,10 @@ export class PeripheralDeviceRepository implements IPeripheralDeviceRepository {
       .find();
   }
 
-  async findOne(id: number): Promise<PeripheralDevice | undefined> {
+  async findOne(id: number): Promise<PeripheralDevice | null> {
     return await this.db
       .getRepository<PeripheralDevice>(PeripheralDevice)
-      .findOne(id);
+      .findOneBy({ id });
   }
 
   async create(
