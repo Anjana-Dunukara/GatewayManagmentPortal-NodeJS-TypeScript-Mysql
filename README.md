@@ -1,0 +1,1 @@
+# GatewayManagmentPortal-NodeJS-TypeScript-Mysql
