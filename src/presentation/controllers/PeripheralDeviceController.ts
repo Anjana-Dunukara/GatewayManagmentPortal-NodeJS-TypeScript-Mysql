@@ -1,4 +1,3 @@
-// src/controllers/PeripheralDeviceController.ts
 import { Request, Response } from "express";
 import { PeripheralDeviceService } from "../../services/PeripheralDeviceService";
 import { inject, injectable } from "tsyringe";

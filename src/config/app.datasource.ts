@@ -1,4 +1,3 @@
-// src/config/database.ts
 import { DataSource } from "typeorm";
 import path from "path";
 import { injectable } from "tsyringe";

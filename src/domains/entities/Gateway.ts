@@ -1,4 +1,3 @@
-// src/entities/Gateway.ts
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { PeripheralDevice } from "./PeripheralDevice";
 

@@ -1,13 +1,14 @@
+import "reflect-metadata";
+import "./containerInitializer";
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
 import gatewayRoutes from "./routes/gatewayRoutes";
 import peripheralDeviceRoutes from "./routes/peripheralDeviceRoutes";
 
 dotenv.config();
 
 const app: Express = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use("/gateways", gatewayRoutes);
 app.use("/devices", peripheralDeviceRoutes);

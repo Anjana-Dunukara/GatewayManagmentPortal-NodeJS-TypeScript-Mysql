@@ -1,4 +1,3 @@
-// src/controllers/GatewayController.ts
 import { Request, Response } from "express";
 import { GatewayService } from "../../services/GatewayService";
 import { inject, injectable } from "tsyringe";

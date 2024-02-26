@@ -1,4 +1,3 @@
-// src/routes/peripheralDeviceRoutes.ts
 import express, { Router } from "express";
 import { PeripheralDeviceController } from "../controllers/PeripheralDeviceController";
 import { container } from "tsyringe";

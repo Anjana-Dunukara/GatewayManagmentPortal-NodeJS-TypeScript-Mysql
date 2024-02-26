@@ -1,4 +1,3 @@
-// src/routes/gatewayRoutes.ts
 import express, { Router } from "express";
 import { GatewayController } from "../controllers/GatewayController";
 import { container } from "tsyringe";
